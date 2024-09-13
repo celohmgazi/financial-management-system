@@ -22,6 +22,8 @@ public class Client {
             InputStream input = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
+            
+
             writer.println("Hello, Server!");
 
             String serverResponse = reader.readLine();
