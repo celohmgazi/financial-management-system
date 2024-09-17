@@ -11,6 +11,7 @@
 /home/wtc/Music/financial-management-system/src/main/java/client/UserDetailsValidator.java
 /home/wtc/Music/financial-management-system/src/main/java/database/DataRetriever.java
 /home/wtc/Music/financial-management-system/src/main/java/database/DataLoader.java
+/home/wtc/Music/financial-management-system/src/main/java/database/Tables.java
 /home/wtc/Music/financial-management-system/src/main/java/client/Client.java
 /home/wtc/Music/financial-management-system/src/main/java/commands/server/Command.java
 /home/wtc/Music/financial-management-system/src/main/java/commands/client/Register.java

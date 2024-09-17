@@ -9,6 +9,6 @@ public class UserDetailsValidator {
      * @return true if the name is all alphabets, otherwise false
      */
     public boolean isValidName(String name) {
-        return false;
+        return name.matches("^[a-zA-Z]+$");
     }
 }
