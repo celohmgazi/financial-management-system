@@ -8,6 +8,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import communication.Request;
+
 public class Client {
     public static void main(String[] args) {
         String host = "localhost";
@@ -22,12 +24,17 @@ public class Client {
             InputStream input = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
-            
+            UserDetailsCollector collector = new UserDetailsCollector();
 
-            writer.println("Hello, Server!");
+            Request request = new Request();
+
+            String register = request.register(collector);
+
+            
+            writer.println(register);
 
             String serverResponse = reader.readLine();
-            System.out.println("Server: " + serverResponse);
+            System.out.println("<<< Response: " + serverResponse);
             
         } catch(IOException e) {
             e.printStackTrace();

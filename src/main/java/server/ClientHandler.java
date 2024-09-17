@@ -8,6 +8,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import communication.Response;
+
 public class ClientHandler extends Thread{
     private Socket socket;
 
@@ -23,11 +25,12 @@ public class ClientHandler extends Thread{
             OutputStream output = socket.getOutputStream();
             PrintWriter writer = new PrintWriter(output, true)
         ) {
+            Response response = new Response();
             String clientMessage;
 
             while ((clientMessage = reader.readLine()) != null) {
                 System.out.println(">>> Received: " + clientMessage);
-                writer.println("Hy we heard you say '" + clientMessage + "'");
+                writer.println(response.register());
             }
         } catch (IOException e) {
             System.out.println("Client disconnected!");
