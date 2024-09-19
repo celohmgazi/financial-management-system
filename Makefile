@@ -1,4 +1,7 @@
-all: run-fm-system
+all: build
 
-run-fm-system:
-	scripts/build_script
+build:
+	scripts/build_script.sh
+
+clean:
+	rm -rf build/
