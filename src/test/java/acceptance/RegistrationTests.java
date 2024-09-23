@@ -32,16 +32,16 @@ public class RegistrationTests {
 
         assertTrue(serverClient.isConnected());
 
-        // String requestJson = "{" +
-        //     "\"action\": \"register\"," +
-        //     "\"data\": {" +
-        //         "\"firstname\": \"Kusasalakhe\"," +
-        //         "\"lastname\": \"Hlongwa\"" +
-        //     "}" +
-        // "}";
+         String requestJson = "{" +
+             "\"action\": \"register\"," +
+             "\"data\": {" +
+                 "\"firstname\": \"Kusasalakhe\"," +
+                 "\"lastname\": \"Hlongwa\"" +
+             "}" +
+         "}";
 
-        // JsonNode response = serverClient.sendRequest(requestJson);
+         JsonNode response = serverClient.sendRequest(requestJson);
 
-        // assertEquals("OK", response.get("status").asText());
+         assertEquals("OK", response.get("status").asText());
     }
 }

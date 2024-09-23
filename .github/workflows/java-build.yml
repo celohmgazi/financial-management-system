@@ -98,14 +98,14 @@ jobs:
           fi
         shell: bash
 
-  update_dependency_graph:
-    needs: acceptance_tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        
-      - name: Change to Project Directory
-        run: |
-          cd financial-management-system
-          mvn com.github.ferstl:depgraph-maven-plugin:4.0.1:graph
+#  update_dependency_graph:
+#    needs: acceptance_tests
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout Code
+#        uses: actions/checkout@v4
+#
+#      - name: Change to Project Directory
+#        run: |
+#          cd financial-management-system
+#          mvn com.github.ferstl:depgraph-maven-plugin:4.0.1:graph
