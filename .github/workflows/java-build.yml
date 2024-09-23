@@ -1,3 +1,159 @@
+# name: Java CI with Maven
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+
+# jobs:
+#   compile:
+#     strategy:
+#       matrix:
+#         os: [ubuntu-latest, windows-latest]
+#     runs-on: ${{ matrix.os }}
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Set up JDK 17
+#         uses: actions/setup-java@v4
+#         with:
+#           java-version: '17'
+#           distribution: 'temurin'
+#           cache: maven
+#       - name: Compile Application
+#         run: |
+#           echo "Compiling the application..."
+#           mvn clean compile
+#         shell: bash
+
+#   check_dependencies:
+#     needs: compile
+#     strategy:
+#       matrix:
+#         os: [ubuntu-latest, windows-latest]
+#     runs-on: ${{ matrix.os }}
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Set up JDK 17
+#         uses: actions/setup-java@v4
+#         with:
+#           java-version: '17'
+#           distribution: 'temurin'
+#           cache: maven
+#       - name: Check Dependencies
+#         run: |
+#           echo "Checking dependencies..."
+#           mvn dependency:resolve
+#         shell: bash
+
+#   unit_tests:
+#     needs: check_dependencies
+#     strategy:
+#       matrix:
+#         os: [ubuntu-latest, windows-latest]
+#     runs-on: ${{ matrix.os }}
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Set up JDK 17
+#         uses: actions/setup-java@v4
+#         with:
+#           java-version: '17'
+#           distribution: 'temurin'
+#           cache: maven
+#       - name: Run Unit Tests
+#         run: |
+#           echo "Running unit tests..."
+#           mvn test
+#         shell: bash
+
+#   package:
+#     needs: unit_tests
+#     strategy:
+#       matrix:
+#         os: [ubuntu-latest, windows-latest]
+#     runs-on: ${{ matrix.os }}
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Set up JDK 17
+#         uses: actions/setup-java@v4
+#         with:
+#           java-version: '17'
+#           distribution: 'temurin'
+#           cache: maven
+#       - name: Package Application
+#         run: |
+#           echo "Packaging the application..."
+#           mvn package -DskipTests
+#         shell: bash
+
+#   acceptance_tests:
+#     needs: package
+#     strategy:
+#       matrix:
+#         os: [ubuntu-latest, windows-latest]
+#     runs-on: ${{ matrix.os }}
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Set up JDK 17
+#         uses: actions/setup-java@v4
+#         with:
+#           java-version: '17'
+#           distribution: 'temurin'
+#           cache: maven
+#       - name: Check JAR file exists
+#         run: |
+#           if [ ! -f target/financial-management-system-1.0-SNAPSHOT-jar-with-dependencies.jar ]; then
+#             echo "JAR file not found!"
+#             exit 1
+#           fi
+#       - name: Start Server
+#         if: runner.os == 'Linux'
+#         run: |
+#           echo "Starting the server..."
+#           nohup java -jar target/financial-management-system-1.0-SNAPSHOT-jar-with-dependencies.jar &
+#           SERVER_PID=$!
+#           sleep 5
+#         shell: bash
+#       - name: Start Server (Windows)
+#         if: runner.os == 'Windows'
+#         run: |
+#           echo "Starting the server..."
+#           Start-Process -NoNewWindow -FilePath "java" -ArgumentList "-jar target/financial-management-system-1.0-SNAPSHOT-jar-with-dependencies.jar"
+#           Start-Sleep -s 5
+#         shell: powershell
+#       - name: Run Acceptance Tests
+#         run: |
+#           echo "Running acceptance tests..."
+#           mvn verify
+#         shell: bash
+#       - name: Stop Server
+#         if: runner.os == 'Linux'
+#         run: |
+#           echo "Stopping the server..."
+#           if [ -n "$SERVER_PID" ]; then
+#             kill $SERVER_PID
+#           fi
+#         shell: bash
+#       - name: Stop Server (Windows)
+#         if: runner.os == 'Windows'
+#         run: |
+#           echo "Stopping the server..."
+#           Stop-Process -Name java
+#         shell: powershell
+
+#   update_dependency_graph:
+#     needs: acceptance_tests
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Update dependency graph
+#         uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+
+1 compile
+2 check_dependencis
+3 run unit tests
+4 package
+5 open server run acceptance tests close server
+
 name: Java CI with Maven
 
 on:
@@ -7,11 +163,13 @@ on:
     branches: [ "main" ]
 
 jobs:
-  compile:
+  build:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
+
     runs-on: ${{ matrix.os }}
+
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 17
@@ -25,87 +183,16 @@ jobs:
           echo "Compiling the application..."
           mvn clean compile
         shell: bash
-
-  check_dependencies:
-    needs: compile
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
       - name: Check Dependencies
         run: |
           echo "Checking dependencies..."
           mvn dependency:resolve
         shell: bash
-
-  unit_tests:
-    needs: check_dependencies
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
-      - name: Run Unit Tests
-        run: |
-          echo "Running unit tests..."
-          mvn test
-        shell: bash
-
-  package:
-    needs: unit_tests
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
       - name: Package Application
         run: |
           echo "Packaging the application..."
           mvn package -DskipTests
         shell: bash
-
-  acceptance_tests:
-    needs: package
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
-      - name: Check JAR file exists
-        run: |
-          if [ ! -f target/financial-management-system-1.0-SNAPSHOT-jar-with-dependencies.jar ]; then
-            echo "JAR file not found!"
-            exit 1
-          fi
       - name: Start Server
         if: runner.os == 'Linux'
         run: |
@@ -121,10 +208,10 @@ jobs:
           Start-Process -NoNewWindow -FilePath "java" -ArgumentList "-jar target/financial-management-system-1.0-SNAPSHOT-jar-with-dependencies.jar"
           Start-Sleep -s 5
         shell: powershell
-      - name: Run Acceptance Tests
+      - name: Run Tests
         run: |
-          echo "Running acceptance tests..."
-          mvn verify
+          echo "Running tests..."
+          mvn test
         shell: bash
       - name: Stop Server
         if: runner.os == 'Linux'
@@ -140,10 +227,5 @@ jobs:
           echo "Stopping the server..."
           Stop-Process -Name java
         shell: powershell
-
-  update_dependency_graph:
-    needs: acceptance_tests
-    runs-on: ubuntu-latest
-    steps:
       - name: Update dependency graph
         uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
