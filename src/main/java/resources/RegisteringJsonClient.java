@@ -26,7 +26,7 @@ public class RegisteringJsonClient implements RegisteringClient {
                     socket.getInputStream()));
         } catch (IOException e) {
             //error connecting should just throw Runtime error and fail test
-            throw new RuntimeException("Error connecting to Robot Worlds server.", e);
+            throw new RuntimeException("Error connecting to Server.", e);
         }
     }
 
@@ -43,7 +43,7 @@ public class RegisteringJsonClient implements RegisteringClient {
             socket.close();
         } catch (IOException e) {
             //error connecting should just throw Runtime error and fail test
-            throw new RuntimeException("Error disconnecting from Robot Worlds server.", e);
+            throw new RuntimeException("Error disconnecting from Server.", e);
         }
     }
 
