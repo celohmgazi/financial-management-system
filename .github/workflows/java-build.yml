@@ -81,7 +81,7 @@ jobs:
           echo "Starting the server..."
           nohup java -jar target/financial-management-system-1.0-SNAPSHOT-jar-with-dependencies.jar &
           SERVER_PID=$!
-          sleep 5
+          sleep 30
         shell: bash
       - name: Start Server (Windows)
         if: runner.os == 'Windows'
