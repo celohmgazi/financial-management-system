@@ -69,12 +69,14 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: jar-file
+          path: target/
       - name: List target directory
         run: |
           echo "Listing target directory..."
           ls -la target/
         shell: bash
       - name: Start Server
+        if: runner.os == 'Linux'
         run: |
           echo "Starting the server..."
           nohup java -jar target/financial-management-system-1.0-SNAPSHOT-jar-with-dependencies.jar &
@@ -88,6 +90,7 @@ jobs:
           mvn verify
         shell: bash
       - name: Stop Server
+        if: runner.os == 'Linux'
         run: |
           echo "Stopping the server..."
           if [ -n "$SERVER_PID" ]; then
@@ -101,7 +104,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      
-      - name: Generate Dependency Graph
+        
+      - name: Change to Project Directory
         run: |
+          cd financial-management-system
           mvn com.github.ferstl:depgraph-maven-plugin:4.0.1:graph
