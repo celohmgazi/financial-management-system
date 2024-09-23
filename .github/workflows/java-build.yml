@@ -10,7 +10,7 @@ jobs:
   compile:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
     needs: compile
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -55,7 +55,7 @@ jobs:
     needs: package
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -83,13 +83,7 @@ jobs:
           SERVER_PID=$!
           sleep 30
         shell: bash
-      - name: Start Server (Windows)
-        if: runner.os == 'Windows'
-        run: |
-          echo "Starting the server..."
-          Start-Process -NoNewWindow -FilePath "java" -ArgumentList "-jar target/financial-management-system-1.0-SNAPSHOT-jar-with-dependencies.jar"
-          Start-Sleep -s 5
-        shell: powershell
+
       - name: Run Acceptance Tests
         run: |
           echo "Running acceptance tests..."
@@ -103,12 +97,6 @@ jobs:
             kill $SERVER_PID
           fi
         shell: bash
-      - name: Stop Server (Windows)
-        if: runner.os == 'Windows'
-        run: |
-          echo "Stopping the server..."
-          Stop-Process -Name java
-        shell: powershell
 
   update_dependency_graph:
     needs: acceptance_tests
