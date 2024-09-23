@@ -19,7 +19,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>5.0.0</version>
+            <version>5.4.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -66,14 +66,11 @@
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
-                    
-                    <excludes>
-                        <exclude>**/*Tests.java</exclude>
-                    </excludes>
                     <useModulePath>false</useModulePath> <!-- For Java 9+ -->
                 </configuration>
             </plugin>
 
+            <!-- Maven Failsafe Plugin for acceptance/integration tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -87,13 +84,14 @@
                     </execution>
                 </executions>
                 <configuration>
-                <!-- Include only acceptance/integration tests -->
                     <includes>
+                        <include>**/*IT.java</include>
                         <include>**/*Tests.java</include>
                     </includes>
                 </configuration>
             </plugin>
 
+            <!-- Exec Maven Plugin for running the application -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -103,9 +101,11 @@
                 </configuration>
             </plugin>
 
+            <!-- Maven Assembly Plugin to create jar-with-dependencies -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.4.0</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -115,9 +115,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>
-                                        server.Server
-                                    </mainClass>
+                                    <mainClass>server.Server</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
@@ -130,5 +128,5 @@
 
         </plugins>
     </build>
-    
+
 </project>
