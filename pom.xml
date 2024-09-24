@@ -53,6 +53,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>net.lemnik</groupId>
+            <artifactId>eodsql</artifactId>
+            <version>2.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
