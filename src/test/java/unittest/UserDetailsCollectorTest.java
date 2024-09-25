@@ -13,7 +13,7 @@ public class UserDetailsCollectorTest {
    
     @Test
     public void testUserInfoCollection() {
-        String simulatedInput = "Makhosazane\nDube";
+        String simulatedInput = "Makhosazane\nDube\nmakhosazanedube@email.com";
         InputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
         System.setIn(in);
 
@@ -21,5 +21,6 @@ public class UserDetailsCollectorTest {
 
         assertEquals("Makhosazane", collector.getFirstName());
         assertEquals("Dube", collector.getLastName());
+        assertEquals("makhosazanedube@email.com", collector.getEmail());
     }
 }
