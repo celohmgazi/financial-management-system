@@ -60,6 +60,12 @@
         </dependency>
 
     </dependencies>
+    <repositories>
+        <repository>
+            <id>lemnik-repo</id>
+            <url>https://lemnik.github.io/eodsql/maven-repo</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
