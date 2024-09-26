@@ -5,7 +5,12 @@ import net.lemnik.eodsql.Update;
 
 public interface DataAccessInterface extends BaseQuery{
     
-    @Update("CREAT TABLE IF NOT EXISTS users (")
+    @Update("CREAT TABLE IF NOT EXISTS users ("
+        + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        + "name TEXT NOT NULL, "
+        + "surname TEXT NOT NULL, "
+        + "created_at DATETIME DEFAULT CURRENT_TIMESTAMP"
+        +")")
     public void createUsersTable();
 
     @Update("CREAT TABLE IF NOT EXISTS income (")
