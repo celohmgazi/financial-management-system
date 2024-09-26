@@ -152,7 +152,7 @@ jobs:
       - name: Install eodsql JAR
         run: |
           mvn install:install-file \
-              -Dfile=libs/eodsql-2.2.jar \
+              -Dfile=lib/eodsql-2.2.jar \
               -DgroupId=net.lemnik \
               -DartifactId=eodsql \
               -Dversion=2.2 \
