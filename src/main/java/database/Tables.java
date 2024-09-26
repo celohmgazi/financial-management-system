@@ -6,4 +6,8 @@ import java.sql.SQLException;
 
 
 public class Tables {
+
+    public void createTables(DataAccessInterface dai) {
+        
+    }
 }

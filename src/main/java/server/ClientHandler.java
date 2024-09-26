@@ -19,6 +19,8 @@ public class ClientHandler extends Thread{
 
     @Override
     public void run() {
+        //dai
+        //dm
         try (
             InputStream input = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));

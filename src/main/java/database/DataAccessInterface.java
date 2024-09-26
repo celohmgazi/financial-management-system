@@ -5,56 +5,63 @@ import net.lemnik.eodsql.Update;
 
 public interface DataAccessInterface extends BaseQuery{
     
-    @Update("CREAT TABLE IF NOT EXISTS users ("
+    @Update("CREATE TABLE IF NOT EXISTS users ("
         + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
         + "name TEXT NOT NULL, "
         + "surname TEXT NOT NULL, "
-        + "surname TEXT NOT NULL UNIQUE, "
+        + "email TEXT NOT NULL UNIQUE, "
         + "created_at DATETIME DEFAULT CURRENT_TIMESTAMP"
         +")")
     public void createUsersTable();
 
-    @Update("CREAT TABLE IF NOT EXISTS income ("
+    @Update("CREATE TABLE IF NOT EXISTS income ("
         + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
         + "user_id INTEGER, "
         + "amount REAL NOT NULL, "
         + "source TEXT, "
-        + "date_received DATE, "
+        + "date_received DATETIME, "
         + "FOREIGN KEY(user_id) REFERENCES users(id)"
         +")")
     public void createIncomeTable();
 
-    @Update("CREAT TABLE IF NOT EXISTS expenses ("
+    @Update("CREATE TABLE IF NOT EXISTS expenses ("
         + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
         + "user_id INTEGER, "
         + "amount REAL NOT NULL, "
         + "category TEXT, "
-        + "date_spent DATE, "
+        + "date_spent DATETIME, "
         + "FOREIGN KEY(user_id) REFERENCES users(id)"
         +")")
     public void createExpensesTable();
 
-    @Update("CREAT TABLE IF NOT EXISTS savings ("
+    @Update("CREATE TABLE IF NOT EXISTS savings ("
         + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
         + "user_id INTEGER, "
         + "goal_name TEXT NOT NULL, "
         + "goal_amount REAL NOT NULL, "
         + "current_amount REAL, "
-        + "start_date DATE, "
+        + "start_date DATETIME, "
         + "end_date DATE, "
         + "FOREIGN KEY(user_id) REFERENCES users(id)"
         +")")
     public void createSavingsTable();
 
-    @Update("CREAT TABLE IF NOT EXISTS budget ("
+    @Update("CREATE TABLE IF NOT EXISTS budget ("
         + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
         + "user_id INTEGER, "
         + "monthly_budget REAL NOT NULL, "
-        + "date_created DATE, "
+        + "date_created DATETIME, "
         + "FOREIGN KEY(user_id) REFERENCES users(id)"
         +")")
     public void createBudgetTable();
 
-    @Update("CREAT TABLE IF NOT EXISTS transactions (")
+    @Update("CREATE TABLE IF NOT EXISTS transactions ("
+        + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        + "user_id INTEGER, "
+        + "amount REAL NOT NULL, "
+        + "type TEXT, "  // Type: 'income' or 'expense'
+        + "transaction_date DATETIME, "
+        + "FOREIGN KEY(user_id) REFERENCES users(id)"
+        + ")")
     public void createTransactionsTable();
 }
