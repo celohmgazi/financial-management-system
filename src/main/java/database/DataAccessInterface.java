@@ -24,7 +24,14 @@ public interface DataAccessInterface extends BaseQuery{
         +")")
     public void createIncomeTable();
 
-    @Update("CREAT TABLE IF NOT EXISTS expenses (")
+    @Update("CREAT TABLE IF NOT EXISTS expenses ("
+        + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        + "user_id INTEGER, "
+        + "amount REAL NOT NULL, "
+        + "category TEXT, "
+        + "date_spent DATE, "
+        + "FOREIGN KEY(user_id) REFERENCES users(id)"
+        +")")
     public void createExpensesTable();
 
     @Update("CREAT TABLE IF NOT EXISTS savings (")
