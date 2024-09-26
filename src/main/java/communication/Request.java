@@ -11,6 +11,7 @@ public class Request {
 
         personalDetails.put("firstname", collector.getFirstName());
         personalDetails.put("lastname", collector.getLastName());
+        personalDetails.put("email", collector.getEmail());
 
         registrationData.put("action", "register");
 

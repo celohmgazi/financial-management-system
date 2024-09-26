@@ -37,6 +37,7 @@ public class RegistrationTests {
              "\"data\": {" +
                  "\"firstname\": \"Kusasalakhe\"," +
                  "\"lastname\": \"Hlongwa\"" +
+                 "\"email\": \"kusasalakhe.hlongwa@example.com\"" +
              "}" +
          "}";
 
