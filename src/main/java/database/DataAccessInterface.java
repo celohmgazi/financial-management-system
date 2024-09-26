@@ -9,11 +9,19 @@ public interface DataAccessInterface extends BaseQuery{
         + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
         + "name TEXT NOT NULL, "
         + "surname TEXT NOT NULL, "
+        + "surname TEXT NOT NULL UNIQUE, "
         + "created_at DATETIME DEFAULT CURRENT_TIMESTAMP"
         +")")
     public void createUsersTable();
 
-    @Update("CREAT TABLE IF NOT EXISTS income (")
+    @Update("CREAT TABLE IF NOT EXISTS income ("
+        + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        + "user_id INTEGER, "
+        + "amount REAL NOT NULL, "
+        + "source TEXT, "
+        + "date_received DATE, "
+        + "FOREIGN KEY(user_id) REFERENCES users(id)"
+        +")")
     public void createIncomeTable();
 
     @Update("CREAT TABLE IF NOT EXISTS expenses (")
