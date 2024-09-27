@@ -39,7 +39,16 @@ public class DataManager {
     }
 
     public void createTables(DataAccessInterface dai) {
-       
+       if (dai != null) {
+            dai.createUsersTable();
+            dai.createTransactionsTable();
+            dai.createBudgetTable();
+            dai.createExpensesTable();
+            dai.createIncomeTable();
+            dai.createSavingsTable();
+       } else {
+        System.out.println();
+       }
     }
 
     public void closeConnection() {

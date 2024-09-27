@@ -2,7 +2,6 @@ package unittest;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import database.DataAccessInterface;
@@ -54,37 +53,31 @@ public class DataManagerTest {
         deleteDatabaseFile();
     }
 
-    @Disabled
     @Test
     public void testUserTableCreated() throws SQLException {
         assertTrue(checkTableExists("users"));
     }
 
-    @Disabled
     @Test
     public void testIncomeTableCreated() throws SQLException {
         assertTrue(checkTableExists("income"));
     }
     
-    @Disabled
     @Test
     public void testBudgetTableCreated() throws SQLException {
         assertTrue(checkTableExists("budget"));
     }
 
-    @Disabled
     @Test
     public void testExpensesTableCreated() throws SQLException {
         assertTrue(checkTableExists("expenses"));
     }
 
-    @Disabled
     @Test
     public void testSavingsTableCreated() throws SQLException {
         assertTrue(checkTableExists("savings"));
     }
 
-    @Disabled
     @Test
     public void testTransactionTableCreated() throws SQLException {
         assertTrue(checkTableExists("transactions"));
