@@ -8,7 +8,8 @@ public class Response {
         JSONObject data = new JSONObject();
         JSONObject response = new JSONObject();
 
-        data.put("message", "Registration Successful!");
+        String message = "Registeration successful!";
+        data.put("message", message);
 
         response.put("status", "OK");
         response.put("data", data);
