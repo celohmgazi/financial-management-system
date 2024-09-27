@@ -7,13 +7,20 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 
 import communication.Request;
 
 public class Client {
+
+
+
     public static void main(String[] args) {
         String host = "localhost";
         int portNumber = 5000;
+        Scanner scanner = new Scanner(System.in);
+        UserInputs inputs = new UserInputs();
+
 
         try (Socket socket = new Socket(host, portNumber)) {
             System.out.println("Connected to the server");
@@ -24,20 +31,28 @@ public class Client {
             InputStream input = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
-            UserDetailsCollector collector = new UserDetailsCollector();
 
-            Request request = new Request();
+            while (true) {
+                System.out.println("What do you want to do?: ");
+                String userInput = scanner.nextLine();
+                String request = inputs.handleUserInputs(userInput);
 
-            String register = request.register(collector);
-
-            
-            writer.println(register);
-
-            String serverResponse = reader.readLine();
-            System.out.println("<<< Response: " + serverResponse);
+                writer.println(request);
+                String serverResponse = reader.readLine();
+                System.out.println(serverResponse);
+            }
             
         } catch(IOException e) {
             e.printStackTrace();
         }
+
+    }
+    public static void information(){
+        System.out.println("-------------------------------------------------------------");
+        System.out.println("Welcome to the Financial Management System !!!\n"+
+                "\nThis is what we offer: \n"+
+                "\t1. Savings planning\n"+
+                "\t2. Budget planning\n");
+        System.out.println("-------------------------------------------------------------");
     }
 }
