@@ -4,7 +4,7 @@ import kong.unirest.json.JSONObject;
 
 public class Response {
     
-    public String register() {
+    public static String register() {
         JSONObject data = new JSONObject();
         JSONObject response = new JSONObject();
 
