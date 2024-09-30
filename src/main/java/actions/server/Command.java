@@ -1,4 +1,4 @@
-package commands.client;
+package actions.server;
 
 public class Command {
     
