@@ -66,7 +66,7 @@ public interface DataAccessInterface extends BaseQuery{
         + ")")
     public void createTransactionsTable();
 
-    @Update("INSERT INTO users (name, surname, email) VALUES (?{1}, ?{2})")
+    @Update("INSERT INTO users (name, surname, email) VALUES (?{1}, ?{2}, ?{3})")
     public void createUSer(String name, String surname, String email);
 
     @Select("SELECT id FROM users WHERE email = ?{1}")
