@@ -11,10 +11,12 @@ public class UserInputs {
     private String email;
     private final UserDetailsValidator validator;
     private Request request;
+    private Scanner scanner;
 
     public UserInputs() {
         validator = new UserDetailsValidator();
         request = new Request();
+        scanner = new Scanner(System.in);
     }
 
     public String registrationInfo() {
@@ -37,7 +39,6 @@ public class UserInputs {
     }
 
     public String getUserFirstName() {
-        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             System.out.println("Enter your first name: ");
@@ -51,7 +52,6 @@ public class UserInputs {
     }
 
     public String getUserLastName() {
-        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             System.out.println("Enter your last name: ");
@@ -65,7 +65,6 @@ public class UserInputs {
     }
 
     public String getUserEmail() {
-        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             System.out.println("Enter your email: ");

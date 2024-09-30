@@ -1,6 +1,5 @@
 package communication;
 
-import client.UserDetailsCollector;
 import kong.unirest.json.JSONObject;
 
 public class Request {
@@ -33,12 +32,5 @@ public class Request {
         loginData.put("data", loginDetails);
 
         return loginData.toString();
-    }
-
-    public String handleRequests(String request) {
-        if (request.contains("register")) {
-            return register("","","");
-        }
-        return null;
     }
 }
