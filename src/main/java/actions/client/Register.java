@@ -13,7 +13,7 @@ public class Register extends Actions{
 
     @Override
     public String execute(DataManager manager, DataAccessInterface dai, 
-        String clientMessage) {
+        String clientMessage, int userId) {
         
         JSONObject userData = new JSONObject(clientMessage).getJSONObject("data");
         String userFirstName = userData.getString("firstname");

@@ -16,4 +16,16 @@ public class Response {
 
         return response.toString();
     }
+
+    public static String login(String message) {
+        JSONObject data = new JSONObject();
+        JSONObject response = new JSONObject();
+
+        data.put("message", message);
+
+        response.put("status", "OK");
+        response.put("data", data);
+
+        return response.toString();
+    }
 }

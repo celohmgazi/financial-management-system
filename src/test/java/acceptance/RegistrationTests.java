@@ -36,7 +36,7 @@ public class RegistrationTests {
              "\"action\": \"register\"," +
              "\"data\": {" +
                  "\"firstname\": \"Kusasalakhe\"," +
-                 "\"lastname\": \"Hlongwa\"" +
+                 "\"lastname\": \"Hlongwa\"," +
                  "\"email\": \"kusasalakhe.hlongwa@example.com\"" +
              "}" +
          "}";
