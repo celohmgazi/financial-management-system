@@ -46,33 +46,33 @@ public class RegistrationTests {
          assertEquals("OK", response.get("status").asText());
     }
 
-    // @Test
-    // public void testRegistrationWithEmailAlreadyTaken() {
+    @Test
+    public void testRegistrationWithEmailAlreadyTaken() {
 
-    //     assertTrue(serverClient.isConnected());
+        assertTrue(serverClient.isConnected());
 
-    //      String requestJson = "{" +
-    //          "\"action\": \"register\"," +
-    //          "\"data\": {" +
-    //              "\"firstname\": \"suguru\"," +
-    //              "\"lastname\": \"geto\"," +
-    //              "\"email\": \"sgeto@example.com\"" +
-    //          "}" +
-    //      "}";
+         String requestJson = "{" +
+             "\"action\": \"register\"," +
+             "\"data\": {" +
+                 "\"firstname\": \"suguru\"," +
+                 "\"lastname\": \"geto\"," +
+                 "\"email\": \"sgeto@example.com\"" +
+             "}" +
+         "}";
 
-    //      String requestJson2 = "{" +
-    //          "\"action\": \"register\"," +
-    //          "\"data\": {" +
-    //              "\"firstname\": \"suguru\"," +
-    //              "\"lastname\": \"geto\"," +
-    //              "\"email\": \"sgeto@example.com\"" +
-    //          "}" +
-    //      "}";
+         String requestJson2 = "{" +
+             "\"action\": \"register\"," +
+             "\"data\": {" +
+                 "\"firstname\": \"suguru\"," +
+                 "\"lastname\": \"geto\"," +
+                 "\"email\": \"sgeto@example.com\"" +
+             "}" +
+         "}";
 
-    //      serverClient.sendRequest(requestJson);
+         serverClient.sendRequest(requestJson);
 
-    //      JsonNode response = serverClient.sendRequest(requestJson2);
+         JsonNode response = serverClient.sendRequest(requestJson2);
 
-    //      assertEquals("ERROR", response.get("status").asText());
-    // }
+         assertEquals("ERROR", response.get("status").asText());
+    }
 }

@@ -21,11 +21,11 @@ public class Register extends Actions{
         JSONObject userData = new JSONObject(clientMessage).getJSONObject("data");
         String userEmail = userData.getString("email");
 
-        // List<String> emails = dai.getAllEmails();
+        int emailCount = dai.emailExists(userEmail);
         
-        // if (emails.contains(userEmail)) {
-        //     return Response.register("ERROR", "An account with that email already exists!");
-        // }
+        if (emailCount > 0) {
+            return Response.register("ERROR", "An account with that email already exists!");
+        }
 
         String userFirstName = userData.getString("firstname");
         String userLastName = userData.getString("lastname");

@@ -55,31 +55,31 @@ public class LoginTests {
         assertEquals("OK", response.get("status").asText());
     }
 
-    // @Test
-    // public void testLoginWhenAlreadyLoggedIn() {
+    @Test
+    public void testLoginWhenAlreadyLoggedIn() {
 
-    //     assertTrue(serverClient.isConnected());
+        assertTrue(serverClient.isConnected());
 
-    //     String requestLogin = "{" +
-    //          "\"action\": \"login\"," +
-    //          "\"data\": {" +
-    //              "\"email\": \"jcena@gmail.com\"" +
-    //             //  "\"password\": \"naruto@uzumaki7th\"" +
-    //          "}" +
-    //      "}";
+        String requestLogin = "{" +
+             "\"action\": \"login\"," +
+             "\"data\": {" +
+                 "\"email\": \"jcena@gmail.com\"" +
+                //  "\"password\": \"naruto@uzumaki7th\"" +
+             "}" +
+         "}";
 
-    //     JsonNode response = serverClient.sendRequest(requestLogin);
-    //     assertEquals("OK", response.get("status").asText());
+        JsonNode response = serverClient.sendRequest(requestLogin);
+        assertEquals("OK", response.get("status").asText());
 
-    //     String requestLogin2 = "{" +
-    //          "\"action\": \"login\"," +
-    //          "\"data\": {" +
-    //              "\"email\": \"jcena@gmail.com\"," +
-    //              "\"password\": \"naruto@uzumaki7th\"" +
-    //          "}" +
-    //      "}";
+        String requestLogin2 = "{" +
+             "\"action\": \"login\"," +
+             "\"data\": {" +
+                 "\"email\": \"jcena@gmail.com\"," +
+                 "\"password\": \"naruto@uzumaki7th\"" +
+             "}" +
+         "}";
         
-    //     JsonNode response2 = serverClient.sendRequest(requestLogin2);
-    //     assertEquals("ERROR", response2.get("status").asText());
-    // }
+        JsonNode response2 = serverClient.sendRequest(requestLogin2);
+        assertEquals("ERROR", response2.get("status").asText());
+    }
 }
