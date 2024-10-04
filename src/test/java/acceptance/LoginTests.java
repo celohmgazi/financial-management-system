@@ -64,7 +64,7 @@ public class LoginTests {
              "\"action\": \"login\"," +
              "\"data\": {" +
                  "\"email\": \"jcena@gmail.com\"" +
-                //  "\"password\": \"naruto@uzumaki7th\"" +
+                 "\"password\": \"naruto@uzumaki7th\"" +
              "}" +
          "}";
 
