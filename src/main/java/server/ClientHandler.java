@@ -52,7 +52,7 @@ public class ClientHandler extends Thread{
                 userEmail = extractUserEmail(clientMessage);
                 
                 if (isUserLoggedIn(userEmail)) {
-                    writer.println(Response.login("You're already logged in!"));
+                    writer.println(Response.login("ERROR", "You're already logged in!"));
                     continue;
                 }
 

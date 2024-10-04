@@ -4,6 +4,8 @@ import net.lemnik.eodsql.BaseQuery;
 import net.lemnik.eodsql.Select;
 import net.lemnik.eodsql.Update;
 
+import java.util.List;
+
 public interface DataAccessInterface extends BaseQuery{
     
     @Update("CREATE TABLE IF NOT EXISTS users ("
@@ -67,8 +69,9 @@ public interface DataAccessInterface extends BaseQuery{
     public void createTransactionsTable();
 
     @Update("INSERT INTO users (name, surname, email) VALUES (?{1}, ?{2}, ?{3})")
-    public void createUSer(String name, String surname, String email);
+    public void createUser(String name, String surname, String email);
 
     @Select("SELECT id FROM users WHERE email = ?{1}")
     public int getUserId(String email);
+
 }

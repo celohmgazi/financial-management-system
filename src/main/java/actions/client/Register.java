@@ -5,22 +5,33 @@ import database.DataAccessInterface;
 import database.DataManager;
 import kong.unirest.json.JSONObject;
 
+import java.util.List;
+
 public class Register extends Actions{
 
     public Register() {
         super("register");
     }
 
+
     @Override
     public String execute(DataManager manager, DataAccessInterface dai, 
         String clientMessage, int userId) {
         
         JSONObject userData = new JSONObject(clientMessage).getJSONObject("data");
-        String userFirstName = userData.getString("firstname");
         String userEmail = userData.getString("email");
-        String userLastName = userData.getString("lastname");
-        dai.createUSer(userFirstName, userLastName, userEmail);
+
+        // List<String> emails = dai.getAllEmails();
         
-        return Response.register();
+        // if (emails.contains(userEmail)) {
+        //     return Response.register("ERROR", "An account with that email already exists!");
+        // }
+
+        String userFirstName = userData.getString("firstname");
+        String userLastName = userData.getString("lastname");
+
+        dai.createUser(userFirstName, userLastName, userEmail);
+        
+        return Response.register("OK", "Registration successful!");
     }
 }

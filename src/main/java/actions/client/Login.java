@@ -15,7 +15,6 @@ public class Login extends Actions{
         String clientMessage, int userId) {
         String message = "Login in successful!";
         
-        return Response.login(message);
+        return Response.login("OK", message);
     }
-    
 }

@@ -31,7 +31,7 @@ public class UserInputs {
         String email = getUserEmail();
         String password = getUserPassword();
 
-        return request.login(email, password);
+        return request.login(email, "null");
     }
 
     public String userCommands() {
