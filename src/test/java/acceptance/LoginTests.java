@@ -63,8 +63,8 @@ public class LoginTests {
         String requestLogin = "{" +
              "\"action\": \"login\"," +
              "\"data\": {" +
-                 "\"email\": \"jcena@gmail.com\"" +
-                 "\"password\": \"naruto@uzumaki7th\"" +
+                 "\"email\": \"jcena@gmail.com\"," +
+                 "\"password\": \"null\"" +
              "}" +
          "}";
 
@@ -75,7 +75,7 @@ public class LoginTests {
              "\"action\": \"login\"," +
              "\"data\": {" +
                  "\"email\": \"jcena@gmail.com\"," +
-                 "\"password\": \"naruto@uzumaki7th\"" +
+                 "\"password\": \"null\"" +
              "}" +
          "}";
         
