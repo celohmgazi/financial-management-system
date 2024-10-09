@@ -72,8 +72,8 @@ public interface DataAccessInterface extends BaseQuery{
     public void createUser(String name, String surname, String email);
 
     @Select("SELECT id FROM users WHERE email = ?{1}")
-    public int getUserId(String email);
+    public Integer getUserId(String email);
 
     @Select("SELECT COUNT(*) FROM users WHERE email = ?{1}")
-    public int emailExists(String email);
+    public Integer emailExists(String email);
 }

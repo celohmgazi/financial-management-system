@@ -16,7 +16,7 @@ public class Register extends Actions{
 
     @Override
     public String execute(DataManager manager, DataAccessInterface dai, 
-        String clientMessage, int userId) {
+        String clientMessage, Integer userId) {
         
         JSONObject userData = new JSONObject(clientMessage).getJSONObject("data");
         String userEmail = userData.getString("email");

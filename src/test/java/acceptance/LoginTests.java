@@ -82,4 +82,20 @@ public class LoginTests {
         JsonNode response2 = serverClient.sendRequest(requestLogin2);
         assertEquals("ERROR", response2.get("status").asText());
     }
+
+    @Test
+    public void testLoginInvalidEmail() {
+        assertTrue(serverClient.isConnected());
+
+        String requestLogin = "{" +
+             "\"action\": \"login\"," +
+             "\"data\": {" +
+                 "\"email\": \"jolenmoore@gmail.com\"," +
+                 "\"password\": \"null\"" +
+             "}" +
+         "}";
+
+        JsonNode response = serverClient.sendRequest(requestLogin);
+        assertEquals("ERROR", response.get("status").asText());
+    }
 }

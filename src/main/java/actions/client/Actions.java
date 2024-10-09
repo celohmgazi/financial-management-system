@@ -26,5 +26,5 @@ public abstract class Actions {
         }
     }
 
-    public abstract String execute(DataManager manager, DataAccessInterface dai, String clientMessage, int userId);
+    public abstract String execute(DataManager manager, DataAccessInterface dai, String clientMessage, Integer userId);
 }

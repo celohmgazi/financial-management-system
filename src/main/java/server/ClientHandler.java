@@ -43,7 +43,6 @@ public class ClientHandler extends Thread{
             dai = manager.getDAI();
 
             String clientMessage;
-            boolean loggedIn = false;
             userEmail = null;
 
             while ((clientMessage = reader.readLine()) != null) {
@@ -56,9 +55,8 @@ public class ClientHandler extends Thread{
                     continue;
                 }
 
-                int userId = setUserId(clientMessage, dai);
-                if (userId != 0) {
-                    loggedIn = true;
+                Integer userId = setUserId(clientMessage, dai);
+                if (userId != null) {
                     loggedInUsers.add(userEmail);
                 }
                 
@@ -80,9 +78,9 @@ public class ClientHandler extends Thread{
         }
     }
 
-    private int setUserId(String clientMessage, DataAccessInterface dai) {
+    private Integer setUserId(String clientMessage, DataAccessInterface dai) {
         String action = new JSONObject(clientMessage).getString("action");
-        int userId = 0;
+        Integer userId = null;
         String userEmail = null;
 
         if (action.equals("login")) {
@@ -98,7 +96,7 @@ public class ClientHandler extends Thread{
     }
 
     private String handleResponse(DataManager manager, DataAccessInterface dai,
-                                  String clientMessage, int userId) {
+                                  String clientMessage, Integer userId) {
         return action.execute(manager, dai, clientMessage, userId);
     }
 
